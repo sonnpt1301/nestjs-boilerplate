@@ -1,10 +1,6 @@
-// import * as dotenv from 'dotenv';
-// import 'dotenv/config';
 // import * as firebase from 'firebase-admin';
-
-// dotenv.config({
-//   path: `.env.${process.env.NODE_ENV}`,
-// });
+// import { config } from 'dotenv';
+// config();
 
 // if (!firebase.apps?.length) {
 //   const firebase_params = {
