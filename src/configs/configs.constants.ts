@@ -1,8 +1,6 @@
-import { config } from 'dotenv';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
-config();
 
-export const typeOrmConfig: PostgresConnectionOptions = {
+export const databaseConfig: PostgresConnectionOptions = {
   type: 'postgres',
   database: process.env.DB_DATABASE,
   host: process.env.DB_HOST,
@@ -10,6 +8,13 @@ export const typeOrmConfig: PostgresConnectionOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   synchronize: true,
+  entities: [`${__dirname}/**/*.entity.{js,ts}`],
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
 };
 
 export const appConfig = {
@@ -25,4 +30,18 @@ export const redisConfig = {
   host: process.env.REDIS_HOST,
   port: process.env.REDIS_PORT,
   password: process.env.REDIS_PASSWORD,
+};
+
+export const awsAccessBucket = {
+  endpoint: process.env.AWS_END_POINT,
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+};
+
+export const awsBucket = process.env.BUCKET;
+
+export const awsFolder = {
+  images: 'images/',
+  files: 'files/',
+  videos: 'videos/',
 };

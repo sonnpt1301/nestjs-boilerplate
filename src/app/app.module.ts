@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { typeOrmConfig } from 'src/configs/databases/typeorm.config';
+import { UsersModule } from 'src/modules/users/users.module';
+import { PaginationModule } from 'src/shared/pagination/pagination.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { typeOrmConfig } from './configs/databases/typeorm.config';
-import { UsersModule } from './modules/users/users.module';
-import { PaginationModule } from './shared/pagination/pagination.module';
 
 @Module({
   imports: [
