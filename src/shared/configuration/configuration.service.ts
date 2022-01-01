@@ -70,6 +70,14 @@ export class ConfigurationService {
     };
   }
 
+  get aws_folder() {
+    return {
+      images: 'images/',
+      files: 'files/',
+      videos: 'videos/',
+    };
+  }
+
   get db() {
     return {
       type: 'mongodb',
