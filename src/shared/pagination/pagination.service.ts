@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { SelectQueryBuilder } from 'typeorm';
-import { commonRadix } from '../contants/common.contants';
+import { commonRadix } from '../constants/common.constant';
 import { CommonPaginationDto } from './dto/pagination.dto';
 
 @Injectable()

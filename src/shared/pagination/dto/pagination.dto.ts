@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { DefaultPagination } from 'src/shared/contants/common.contants';
+import { DefaultPagination } from 'src/shared/constants/common.constant';
 import {
   IsNotEmpty,
   IsNumberString,
