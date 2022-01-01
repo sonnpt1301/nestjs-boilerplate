@@ -9,8 +9,6 @@ import { Request, Response } from 'express';
 import * as moment from 'moment';
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
-  constructor() {}
-
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
