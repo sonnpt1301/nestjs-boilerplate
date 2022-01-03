@@ -4,10 +4,12 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
-import { appConfig } from './configs/configs.constants';
+import { appConfig, rabbitMQConfig } from './configs/configs.constants';
 import { HttpExceptionFilter } from './shared/filter/http-exception.filter';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
+  const { host, password, queueName, user } = rabbitMQConfig;
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()
@@ -27,9 +29,17 @@ async function bootstrap() {
 
   app.enableCors();
 
-  const { port } = appConfig;
-  await app.listen(port || 3000, () => {
-    console.log(`Server is running on ${port}`);
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.RMQ,
+    options: {
+      urls: [`amqp://${user}:${password}@${host}/`],
+      queue: queueName,
+      queueOptions: {
+        durable: false,
+      },
+    },
   });
+
+  await app.startAllMicroservices();
 }
 bootstrap();

@@ -45,3 +45,10 @@ export const awsFolder = {
   files: 'files/',
   videos: 'videos/',
 };
+
+export const rabbitMQConfig = {
+  user: process.env.RABBITMQ_USER,
+  password: process.env.RABBITMQ_PASSWORD,
+  host: process.env.RABBITMQ_HOST,
+  queueName: process.env.RABBITMQ_QUEUE_NAME,
+};
