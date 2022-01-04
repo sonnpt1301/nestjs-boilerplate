@@ -6,20 +6,12 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 import { appConfig } from './configs/configs.constants';
 import { HttpExceptionFilter } from './shared/filter/http-exception.filter';
+import { SwaggerInitialize } from './shared/swaggers/document';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const options = new DocumentBuilder()
-    .setTitle(`EduSys official API`)
-    .setDescription(`The official API documentation for building EduSys App`)
-    .setVersion('1.0')
-    // .addServer(`process.env.BACKEND_URL`)
-    .addBearerAuth({ type: 'apiKey', name: 'Authorization', in: 'header' })
-    .build();
-
-  const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('apis', app, document);
+  SwaggerInitialize(app);
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
