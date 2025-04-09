@@ -9,7 +9,7 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     UsersModule,
-    TypeOrmModule.forRoot(typeOrmConfig),
+    // TypeOrmModule.forRoot(typeOrmConfig),
     PaginationModule,
   ],
   controllers: [AppController],

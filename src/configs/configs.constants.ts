@@ -9,12 +9,6 @@ export const databaseConfig: PostgresConnectionOptions = {
   password: process.env.DB_PASS,
   synchronize: true,
   entities: [`${__dirname}/**/*.entity.{js,ts}`],
-  ssl: true,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  },
 };
 
 export const appConfig = {

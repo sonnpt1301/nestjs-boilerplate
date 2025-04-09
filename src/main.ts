@@ -2,7 +2,6 @@ import './env';
 
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 import { appConfig } from './configs/configs.constants';
 import { HttpExceptionFilter } from './shared/filter/http-exception.filter';
@@ -15,13 +14,13 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   app.enableCors();
 
-  const { port } = appConfig;
-  await app.listen(port || 3000, () => {
-    console.log(`Server is running on ${port}`);
-  });
+  const { port = 9090 } = appConfig;
+  await app.listen(port, () =>
+    console.log(`Server is running on http://localhost:${port}`),
+  );
 }
 bootstrap();
