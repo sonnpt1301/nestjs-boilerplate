@@ -1,73 +1,148 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# NestJS Boilerplate
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A production-ready NestJS boilerplate with TypeScript, MongoDB, Redis, and RabbitMQ.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- 🚀 **NestJS** - A progressive Node.js framework
+- 📦 **TypeScript** - Type safety and better developer experience
+- 🗄️ **MongoDB** - NoSQL database
+- 🔄 **Redis** - In-memory data structure store
+- 🐰 **RabbitMQ** - Message broker
+- 🔐 **JWT Authentication** - Secure authentication
+- 📝 **Swagger** - API documentation
+- 🧪 **Testing** - Unit and E2E tests
+- 🛠️ **Docker** - Containerization
+- 📏 **ESLint & Prettier** - Code quality and formatting
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
 
-## Installation
+- Node.js (v18 or later)
+- Docker and Docker Compose
+- Make (optional, but recommended)
 
-```bash
-$ npm install
-```
+## Getting Started
 
-## Running the app
+### Installation
+
+1. Clone the repository:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/your-username/nestjs-boilerplate.git
+cd nestjs-boilerplate
 ```
 
-## Test
+2. Install dependencies:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+make install
 ```
 
-## Support
+3. Copy environment file:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+cp .env.example .env.development
+```
 
-## Stay in touch
+4. Update environment variables in `.env.development` as needed.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Development
+
+1. Start Docker containers:
+
+```bash
+make docker-up
+```
+
+2. Start development server:
+
+```bash
+make dev
+```
+
+The application will be available at `http://localhost:9090/api`
+
+### Available Make Commands
+
+```bash
+make help          # Show all available commands
+make install       # Install dependencies
+make dev          # Start development server
+make build        # Build the application
+make start        # Start production server
+make test         # Run tests
+make lint         # Run linter
+make format       # Format code
+make clean        # Clean build files
+make docker-up    # Start Docker containers
+make docker-down  # Stop Docker containers
+make docker-logs  # Show Docker logs
+```
+
+### Docker Commands
+
+```bash
+# Start specific service logs
+make docker-logs-mongodb
+make docker-logs-redis
+make docker-logs-rabbitmq
+
+# Docker container management
+make docker-restart
+make docker-ps
+```
+
+### Development Workflow
+
+```bash
+# Setup development environment
+make dev-setup
+
+# Clean development environment
+make dev-clean
+```
+
+## Project Structure
+
+```
+src/
+├── app/              # Application modules
+├── configs/          # Configuration files
+├── shared/           # Shared modules and utilities
+├── main.ts           # Application entry point
+└── env.ts            # Environment configuration
+```
+
+## API Documentation
+
+Once the application is running, you can access the Swagger documentation at:
+`http://localhost:9090/api/docs`
+
+## Testing
+
+```bash
+# Run unit tests
+make test
+
+# Run e2e tests
+npm run test:e2e
+
+# Run test coverage
+npm run test:cov
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+If you find this project helpful, please consider giving it a ⭐️ on GitHub!

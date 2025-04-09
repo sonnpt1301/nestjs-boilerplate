@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: nestjs-boilerplate-mongodb
+    ports:
+      - '${MONGODB_PORT}:27017'
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+    networks:
+      - nestjs-boilerplate-network
+
+  redis:
+    image: redis:latest
+    container_name: nestjs-boilerplate-redis
+    ports:
+      - '${REDIS_PORT}:6379'
+    volumes:
+      - redis_data:/data
+    networks:
+      - nestjs-boilerplate-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: nestjs-boilerplate-rabbitmq
+    ports:
+      - '${RABBITMQ_AMQP_PORT}:5672' # AMQP protocol port
+      - '${RABBITMQ_MANAGEMENT_PORT}:15672' # Management UI port
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USERNAME}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - nestjs-boilerplate-network
+
+volumes:
+  mongodb_data:
+  redis_data:
+  rabbitmq_data:
+
+networks:
+  nestjs-boilerplate-network:
+    driver: bridge
