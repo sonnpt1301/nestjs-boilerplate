@@ -1,6 +1,5 @@
 import { config } from 'dotenv';
 import * as path from 'path';
-import process from 'process';
 
 const { NODE_ENV = 'development' } = process.env;
 

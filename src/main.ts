@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import { appConfig } from './configs/configs.constants';
 import { HttpExceptionFilter } from './shared/filter/http-exception.filter';
 import { SwaggerInitialize } from './shared/swaggers/document';
 import { ValidationPipe } from '@nestjs/common';
@@ -20,7 +19,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  const { port = 9090 } = appConfig;
+  const port = process.env.APP_PORT;
   await app.listen(port, () =>
     console.log(`Server is running on http://localhost:${port}/${apiPrefix}`),
   );
